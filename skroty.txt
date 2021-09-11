@@ -1,0 +1,29 @@
+
+
+
+
+
+docker compose  -f stack-kafka-docker-compose.yml up
+
+docker-compose -f docker-compose.yml stop && docker-compose -f docker-compose.yml rm -vf
+
+
+https://github.com/yahoo/CMAK/issues/731#issuecomment-643880544
+https://github.com/glaucofm/kafka-viewer
+
+docker exec -it zookeeper bash
+
+root@98747a9eac65:/zookeeper-3.4.14# ./bin/zkCli.sh
+[zk: localhost:2181(CONNECTED) 2] ls /kafka-manager
+[configs, deleteClusters, clusters]
+[zk: localhost:2181(CONNECTED) 3] create /kafka-manager/mutex ""
+Created /kafka-manager/mutex
+[zk: localhost:2181(CONNECTED) 5] create /kafka-manager/mutex/locks ""
+Created /kafka-manager/mutex/locks
+[zk: localhost:2181(CONNECTED) 6] create /kafka-manager/mutex/leases ""
+Created /kafka-manager/mutex/leases
+
+
+kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic youtubeTest
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic youtubeTest --from-beginning
+kafka-console-producer.sh --broker-list localhost:9092 --topic youtubeTest --property "parse.key=true" --property "key.separator=:"
