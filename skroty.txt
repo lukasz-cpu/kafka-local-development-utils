@@ -5,7 +5,7 @@
 
 docker compose  -f stack-kafka-docker-compose.yml up
 
-docker-compose -f docker-compose.yml stop && docker-compose -f docker-compose.yml rm -vf
+docker compose -f docker-compose.yml stop && docker-compose -f docker-compose.yml rm -vf
 
 
 https://github.com/yahoo/CMAK/issues/731#issuecomment-643880544
